@@ -1,4 +1,4 @@
-package datetime
+package datetimeUtils
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package logic
+package logicUtils
 
 func If[T any](cond bool, vtrue, vfalse T) T {
 	if cond {

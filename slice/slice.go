@@ -21,7 +21,7 @@ func Contain[T comparable](a T, array []T) bool {
 	return false
 }
 
-func AnyElementStrContain(str string, array []string) bool {
+func StrContainAnyElement(str string, array []string) bool {
 	for _, b := range array {
 		if strings.Contains(str, b) {
 			return true
@@ -30,9 +30,27 @@ func AnyElementStrContain(str string, array []string) bool {
 	return false
 }
 
-func AllElementStrContain(str string, array []string) bool {
+func StrContainAllElement(str string, array []string) bool {
 	for _, b := range array {
 		if !strings.Contains(str, b) {
+			return false
+		}
+	}
+	return true
+}
+
+func AnyElementContainStr(str string, array []string) bool {
+	for _, b := range array {
+		if strings.Contains(b, str) {
+			return true
+		}
+	}
+	return false
+}
+
+func AllElementContainStr(str string, array []string) bool {
+	for _, b := range array {
+		if !strings.Contains(b, str) {
 			return false
 		}
 	}

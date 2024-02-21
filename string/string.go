@@ -3,6 +3,7 @@ package stringUtils
 import (
 	"math/rand"
 	"regexp"
+	"strings"
 )
 
 func Pointer(s string) *string {
@@ -37,6 +38,24 @@ func IsDigit(s string) bool {
 		}
 	}
 	return true
+}
+
+func SubstringBetween(txt, start, end string) string {
+	s := strings.Index(txt, start)
+	if s == -1 {
+		s = 0
+	} else {
+		s += len(start)
+	}
+
+	// Trova l'indice della parola finale
+	e := strings.Index(txt[s:], end)
+	if e == -1 {
+		e = len(txt)
+	} else {
+		e += s
+	}
+	return txt[s:e]
 }
 
 var nonAlphanumericRegex = regexp.MustCompile(`[^a-zA-Z0-9 ]+`)

@@ -2,8 +2,11 @@ package discord_utils
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
+
+const DiscordEpoch int64 = 1420070400000
 
 func Link(text, url string) string {
 	return fmt.Sprintf("[%s](%s)", text, url)
@@ -41,4 +44,9 @@ func TimeToDiscordWh(t time.Time, timeStyle ...string) string {
 		s += fmt.Sprintf("<t:%d:%s>", t.Unix(), v)
 	}
 	return s
+}
+
+func ParseSnowflake(id string) time.Time {
+	i, _ := strconv.ParseInt(id, 10, 64)
+	return time.Unix(0, ((i>>22)+DiscordEpoch)*1000000)
 }

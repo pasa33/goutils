@@ -1,4 +1,4 @@
-package encodingUtils
+package encoding_utils
 
 import (
 	"crypto/sha256"

@@ -1,4 +1,4 @@
-package numbersUtils
+package numbers_utils
 
 import (
 	"bytes"

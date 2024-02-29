@@ -1,4 +1,4 @@
-package encodingUtils
+package encoding_utils
 
 import "github.com/shengdoushi/base58"
 

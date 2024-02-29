@@ -1,4 +1,4 @@
-package encodingUtils
+package encoding_utils
 
 import jsoniter "github.com/json-iterator/go"
 

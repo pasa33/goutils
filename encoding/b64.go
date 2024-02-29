@@ -1,4 +1,4 @@
-package encodingUtils
+package encoding_utils
 
 import (
 	"encoding/base64"

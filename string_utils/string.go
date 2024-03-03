@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	slice_utils "github.com/pasa33/goutils/slice"
+	"github.com/pasa33/goutils/slice_utils"
 )
 
 func Pointer(s string) *string {

@@ -4,6 +4,8 @@ import (
 	"math/rand"
 	"regexp"
 	"strings"
+
+	slice_utils "github.com/pasa33/goutils/slice"
 )
 
 func Pointer(s string) *string {
@@ -38,6 +40,12 @@ func IsDigit(s string) bool {
 		}
 	}
 	return true
+}
+
+func ShuffleString(s string) string {
+	runes := []rune(s)
+	slice_utils.ShuffleSlice(runes)
+	return string(runes)
 }
 
 func SubstringBetween(txt, start, end string) string {

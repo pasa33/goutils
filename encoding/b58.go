@@ -6,6 +6,10 @@ var B58 b58
 
 type b58 struct{}
 
+func (b58) DefaultAlphabet() string {
+	return "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+}
+
 func (b58) Encode(s string, customAlphabet ...string) string {
 	var alph *base58.Alphabet
 	if len(customAlphabet) == 0 {

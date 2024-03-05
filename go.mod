@@ -6,6 +6,7 @@ require (
 	github.com/google/uuid v1.5.0
 	github.com/json-iterator/go v1.1.12
 	github.com/shengdoushi/base58 v1.0.0
+	golang.org/x/text v0.14.0
 )
 
 require (

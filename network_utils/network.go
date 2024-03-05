@@ -1,7 +1,9 @@
 package network_utils
 
 import (
+	"encoding/binary"
 	"io"
+	"math/rand"
 	"net"
 	"net/http"
 )
@@ -55,4 +57,11 @@ func MyPublicIP() string {
 		return ""
 	}
 	return string(bbody)
+}
+
+func GenerateFakeIp() string {
+	buf := make([]byte, 4)
+	ip := rand.Uint32()
+	binary.LittleEndian.PutUint32(buf, ip)
+	return string(net.IP(buf))
 }

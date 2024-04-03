@@ -78,7 +78,7 @@ func GetProxyIP(proxy string) (string, error) {
 		Transport: transport,
 	}
 
-	res, err := client.Get("https://api64.ipify.org")
+	res, err := client.Get("https://api.ipify.org")
 	if err != nil {
 		return "", fmt.Errorf("req error: %w", err)
 	}

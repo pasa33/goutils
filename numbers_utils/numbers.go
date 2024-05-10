@@ -3,9 +3,14 @@ package numbers_utils
 import (
 	"bytes"
 	"math"
+	"math/rand/v2"
 	"strconv"
 	"strings"
 )
+
+func Random(min, max int) int {
+	return rand.N(max-min+1) + min
+}
 
 //Humanize:
 

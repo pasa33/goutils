@@ -88,3 +88,7 @@ func SplitAny(s string, seps string) []string {
 	}
 	return strings.FieldsFunc(s, splitter)
 }
+
+func SplitTakeLast(s string, seps string) string {
+	return s[strings.LastIndex(s, seps)+1:]
+}

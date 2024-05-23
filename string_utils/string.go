@@ -92,3 +92,12 @@ func SplitAny(s string, seps string) []string {
 func SplitTakeLast(s string, seps string) string {
 	return s[strings.LastIndex(s, seps)+len(seps):]
 }
+
+func ContainsAnyStr(s string, substrings ...string) bool {
+	for _, substr := range substrings {
+		if strings.Contains(s, substr) {
+			return true
+		}
+	}
+	return false
+}

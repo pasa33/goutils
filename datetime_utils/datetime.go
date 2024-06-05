@@ -2,6 +2,7 @@ package datetime_utils
 
 import (
 	"fmt"
+	"math/rand/v2"
 	"strconv"
 	"strings"
 	"time"
@@ -29,6 +30,7 @@ func UTCtoTS(utc string) int {
 	return int(t.UnixMilli())
 }
 
+// just a basedate for gen random dates for botting
 type BaseDate struct {
 	day   int
 	month int
@@ -36,13 +38,13 @@ type BaseDate struct {
 }
 
 func NewBaseDate(d, m, y int) BaseDate {
-	if d < 0 {
+	if d < 0 || d > 31 {
 		d = 1
 	}
-	if m < 0 {
+	if m < 0 || d > 12 {
 		m = 1
 	}
-	if y < 1900 {
+	if y < 1900 || d > 3000 {
 		y = 1900
 	}
 	return BaseDate{
@@ -84,17 +86,25 @@ func (b *BaseDate) Year() int {
 	return b.year
 }
 func (b *BaseDate) Year2() string {
-	return fmt.Sprintf("%02d", b.year)
+	y := strconv.Itoa(b.year)
+	if len(y) < 2 {
+		return y
+	}
+	return y[len(y)-2:]
 }
 func (b *BaseDate) Year4() string {
-	return strings.TrimLeft(strconv.Itoa(b.day), "0")
+	return strconv.Itoa(b.year)
 }
 
 func (b *BaseDate) toTime() time.Time {
-	return time.Date(2020, time.January, 1, 0, 0, 0, 0, time.UTC)
+	return time.Date(b.year, time.Month(b.month), b.day, 0, 0, 0, 0, time.UTC)
 }
 
-func RandomDateBetween(ts int) string {
-	t := time.UnixMilli(int64(ts))
-	return t.Format("2006-01-02")
+func RandomDateBetween(a, b BaseDate) BaseDate {
+	startUnix := a.toTime().Unix()
+	endUnix := b.toTime().Unix()
+
+	randomUnix := rand.Int64N(endUnix-startUnix) + startUnix
+
+	return TimeToBaseDate(time.Unix(randomUnix, 0))
 }

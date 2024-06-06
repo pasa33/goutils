@@ -51,7 +51,7 @@ func MyLocalIP() string {
 }
 
 func MyPublicIP() string {
-	res, err := http.Get("https://api64.ipify.org")
+	res, err := http.Get("https://api.ipify.org")
 	if err != nil {
 		return ""
 	}
@@ -121,4 +121,16 @@ func ProxyFormatter(plain string) string {
 	}
 
 	return ""
+}
+
+func GetLocalhostFreePort() (port int, err error) {
+	var a *net.TCPAddr
+	if a, err = net.ResolveTCPAddr("tcp", "localhost:0"); err == nil {
+		var l *net.TCPListener
+		if l, err = net.ListenTCP("tcp", a); err == nil {
+			defer l.Close()
+			return l.Addr().(*net.TCPAddr).Port, nil
+		}
+	}
+	return
 }

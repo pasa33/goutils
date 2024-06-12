@@ -1,7 +1,7 @@
 package string_utils
 
 import (
-	"math/rand"
+	"math/rand/v2"
 	"regexp"
 	"strings"
 	"unicode"
@@ -32,7 +32,7 @@ func RandomString(lenght int, charset ...string) string {
 
 	s := make([]byte, lenght)
 	for i := range s {
-		s[i] = letters[rand.Intn(len(letters))]
+		s[i] = letters[rand.IntN(len(letters))]
 	}
 	return string(s)
 }
@@ -100,4 +100,34 @@ func ContainsAnyStr(s string, substrings ...string) bool {
 		}
 	}
 	return false
+}
+
+func ContainsAnyStrInsensitive(s string, substrings ...string) bool {
+	s = strings.ToLower(s)
+	for _, substr := range substrings {
+		if strings.Contains(s, strings.ToLower(substr)) {
+			return true
+		}
+	}
+	return false
+}
+
+func RandomizeTextCase(input string) string {
+	var sb strings.Builder
+
+	for _, char := range input {
+		if rand.N(2) == 0 {
+			sb.WriteRune(char)
+		} else {
+			if char >= 'a' && char <= 'z' {
+				sb.WriteRune(char - 'a' + 'A')
+			} else if char >= 'A' && char <= 'Z' {
+				sb.WriteRune(char - 'A' + 'a')
+			} else {
+				sb.WriteRune(char)
+			}
+		}
+	}
+
+	return sb.String()
 }
